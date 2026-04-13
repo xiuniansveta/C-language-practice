@@ -166,5 +166,23 @@ else
 {
     printf("%d不是闰年\n", year);
 }*/
+
+
+//2.3 switch语句
+//多分支选择语句：switch语句是一种特殊形式的if else 结构，用于判断条件有多个确定结果的情况。他把多重的else if改成更易用可读性更好的形式
+int num = 0;
+scanf("%d",&num);
+switch (num)
+{
+case 1:
+    printf("one\n");
+    break;
+case 2:
+    printf("two\n");
+    break;
+default:
+    printf("输入错误\n");
+    break;
+}
         return 0;
 }
