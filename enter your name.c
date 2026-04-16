@@ -170,19 +170,89 @@ else
 
 //2.3 switch语句
 //多分支选择语句：switch语句是一种特殊形式的if else 结构，用于判断条件有多个确定结果的情况。他把多重的else if改成更易用可读性更好的形式
-int num = 0;
+
+/*int num = 0;//这个没问题
+//float num = 0;//switch后的expression必须是整型表达式
 scanf("%d",&num);
 switch (num)
 {
-case 1:
+case 1://case后的值，只能是整型常量表达式
     printf("one\n");
-    break;
+    break;//当匹配case1，遇见break就跳出switch语句，不再继续往下执行
 case 2:
     printf("two\n");
     break;
 default:
     printf("输入错误\n");
     break;
+}*/
+
+
+//3.循环结构
+//3.1 while循环
+//practice1:print0 from 1 to 10
+/*int i = 1;
+while (i <= 10)
+{
+    printf("%d\n",i);
+    i++;//i=i+1;i+=1;都是一样的，都是让i的值增加1
+}*/
+
+//practice2:输入一个正整数，逆序打印这个整数的每一位数字，比如输入1234，输出4321。简单算法题
+/*int n;
+scanf_s("%d", &n);//123
+while (n != 0)//循环在n=0时结束
+{
+    printf("%d", n%10);
+    n = n / 10;
+}*/
+
+
+//PRACTICE3:求5的阶乘，5!=5*4*3*2*1=120
+//上手体验1-5相加
+/*int n;
+scanf("%d",&n);
+int i = 1;
+int rem = 0;//用来存储阶乘的结果，初始值为1
+while (i <= n)
+{
+    rem = rem + i;//每次循环都把i加到rem上，最后得到1+2+3+4+5的结果
+    i++;//每次循环i+1
+
 }
+printf("%d",rem);//这步不能少*/
+
+/*int n;
+scanf("%d",&n);
+int i = 1;
+int rem = 1;//warning，初始值应该是1，因为阶乘的定义是从1开始乘的，如果初始值是0导致结果为0
+while (i <= n)
+{
+    //这里是在求阶乘
+    rem = rem * i;
+    //循环条件发生变化，此时++操作
+    i++;
+}
+printf("%d",rem);*/
+
+
+//课堂解答char问题（easy
+/*char a;
+scanf("%c",&a);
+
+char c;
+scanf("%c",&c);//%c是处理char类型专用，不能用%d
+printf("%c,%c",a,c);//如果输入a空格b（a b），会导致实际读取的是空格，就是计算机会读取a以及他的后一格空间的数据，直接输入ab就发现是正常的*/
+
+/*char a;
+scanf("%c", &a);
+getchar();//吃掉一格，比如输入ab，只会输出a。如果输入a空格b，正常输出a，b，因为getchar（）会吃掉a后面的一格空间
+char c;//btw，getchar只能吃掉一格空间，几个getchar（）就吃几个空间
+scanf("%c", &c);
+printf("%c,%c", a, c);
+*/
+
+
+
         return 0;
 }
