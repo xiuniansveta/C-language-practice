@@ -479,7 +479,7 @@ for (i = 1; i <= 10; i++)
 
 
 //接下来找到1-100之间所有能被3整除的数字，使用continue
-int i;
+/*int i;
 for (i = 1; i <= 100; i++)
 {
     if (i % 3 != 0)//这里是i / 3的余数不为0，就执行continue，跳过printf到i++那里。
@@ -487,6 +487,29 @@ for (i = 1; i <= 100; i++)
         continue;
     }
     printf("%d ",i);//只有3，6，9这些被3整除后余数为0的才不执行continue，而是printf输出
-}
+}*/
+
+
+
+//如何访问数组元素？ 通过下标（index） 操作，下标从 0 开始，到数组长度减 1 结束。——deepseek
+int arr[5] = { 10,20,30,40,50 };
+    printf("%d\n", arr[0]);//10
+    printf("%d\n", arr[2]);//30
+    arr[3] = 99;//40 -> 99
+
+//遍历整个数组——基本上使用for循环
+    int arr1[5] = { 1,2,3,4,5 };
+    for (int i = 0; i < 5; i++)
+    {
+        printf("%d ",arr1[i]);
+    }
+    printf("\n");//cow cow cow
+
+    int arr2[7] = { 10,30,40,55,66,77,88};
+    for (int i = 0; i < 7; i++)
+    {
+        printf("%d ",arr2[i]);
+    }
+
     return 0;
 }
