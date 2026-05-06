@@ -490,26 +490,86 @@ for (i = 1; i <= 100; i++)
 }*/
 
 
+//这里简单复习一下switch语句，使用ds老师数字转周期的例子
+/*int day = 3;
+switch (day)
+{
+case 1:
+    printf("Monday\n");
+    break;
+case 2:
+    printf("Tuesday\n");
+    break;
+case 3:
+    printf("Wednesday\n");
+    break;
+case 4:
+    printf("Thursday");
+    break;
+case 5:
+    printf("Friday");
+    break;
+case 6:
+    printf("Saturday");
+    break;
+case 7:
+    printf("Sunday");
+    break;
+default://若没匹配任何case，则执行default
+    printf("Invalid date");
+    break;
+}*/
+//还是switch，ABCD成绩检测
+/*char grade = 'A';
+switch (grade) {
+case 'A':
+case 'B':
+case 'C':
+    printf("pass the examination");
+    break;
+case 'D':
+    printf("Failed the exam");
+    break;
+default:
+    printf("The score is incalid");
+    break;
+}*/
+
+
+
+//DS老师教授数组的组成
+//声明  int arr[大小]  
+//初始化  ={数值1，数值2，...}；局部不数值化会得到垃圾数值
+// int arr[5] = {10,20,30,40,50};其实这样子声明的同时一起初始化了
+//访问  arr[下标]下标从0开始，而不是1
+//越界  很危险，C不检查，比如下标只有0-4，你整了个5，就是越界
+//遍历  下面有了，就是 for（i=0； i<数组长度； i++）；然后printf输出每一个值
+
+//部分初始化 int arr[] = {1,2};//前两个是1，2.后面自动补0
+//不写大小（编译器自动数）  int arr[] = {1,2,3,4,5};//等价于arr[5]
+//声明后单独赋值  int arr[5]; arr[0] = 100; arr[1] = 200;
+//垃圾值： int arr[5];   这 5 个元素的值是不确定的！ 它们来源于这块内存之前使用留下的数据，也就是所谓的“垃圾值”
+
 
 //如何访问数组元素？ 通过下标（index） 操作，下标从 0 开始，到数组长度减 1 结束。——deepseek
-int arr[5] = { 10,20,30,40,50 };
+/*int arr[5] = { 10,20,30,40,50 };
     printf("%d\n", arr[0]);//10
     printf("%d\n", arr[2]);//30
-    arr[3] = 99;//40 -> 99
+    arr[3] = 99;//40 -> 99*/
 
 //遍历整个数组——基本上使用for循环
-    int arr1[5] = { 1,2,3,4,5 };
+/*    int arr1[5] = { 1,2,3,4,5 };
     for (int i = 0; i < 5; i++)
     {
         printf("%d ",arr1[i]);
     }
-    printf("\n");//cow cow cow
+    printf("\n");//cow cow cow*/
 
-    int arr2[7] = { 10,30,40,55,66,77,88};
+/*    int arr2[7] = { 10,30,40,55,66,77,88};
     for (int i = 0; i < 7; i++)
     {
         printf("%d ",arr2[i]);
-    }
+    }*/
 
     return 0;
 }
