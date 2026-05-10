@@ -62,7 +62,7 @@ int main()
 
 	//3.2.3：给数组输入元素（用scanf实现）
 
-	int arr[5];
+/*	int arr[5];
 	for (int i = 0; i < 5; i++)//遍历，i会从0，1，2，3，4全部跑一遍方便你修改
 	{
 		scanf("%d",&arr[i]);//这一步是给数组输入元素，不然默认全是垃圾值，代替了{1，2，3，4，5}这一步，还更加灵活
@@ -71,6 +71,172 @@ int main()
 	for (int i = 0; i < 5; i++)
 	{
 		printf("%d ",arr[i]);//这一步才是真正输出前面输入的数据
+	}*/
+
+	//练习一次
+/*	int arr[7];
+	for (int i = 0; i < 7; i++) //失误了搞成i<8，下标从0开始......
+	{
+		scanf("%d",&arr[i]);
 	}
+	printf("data:");
+	for (int i = 0; i < 7; i++)
+	{
+		printf("%d ",arr[i]);
+	}*/
+	//再练习一次
+/*	int fly[6];
+	int a;
+	for (a = 0; a < 6; a++) {
+		scanf("%d",&fly[a]);
+	}
+	printf("data:");
+	for (a = 0; a < 6; a++) {
+		printf("%d",fly[a]);//这次运行没问题了
+	}*/
+
+
+	//4一维数组在内存当中的存储
+	//数组的内存特性;已知数组的定义是相同类型元素的一个集合，在内存中是一段连续的空间。意味着每个元素与每个元素之间内存是连续的
+	//接下来通过程序打印数组中每个元素的地址：
+/*	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	int i = 0;
+	for (i = 0; i < 10; i++) {
+		printf("&arr[%d] = %d\n",i,&arr[i]);//输出后发现是逐渐减四，但就是连续的，因为每个整型数据占用四个字节，所以是连续的
+	}*/
+
+
+
+	// 5.sizeof与数组     学习sizeof
+	//  新知识，有关sizeof的使用
+/*	int arr[] = { 1,2,3,4,5 };
+	int len = sizeof(arr) / sizeof(arr[0]);    // 整个数组的字节大小/数组当中每个元素的字节大小 = 数组中元素的个数
+	for (int i = 0; i < len; i++)//这里不是直接写下i<5，而是用sizeof来运算出了i<5
+	{
+		printf("%d ",arr[i]);
+	}*/   
+
+//int类型变量占用4个字节
+//int a = 0;// 要点：如何通过代码来输出几个字节？  A of B 相当 B的A
+// 因此  sizeof（a） //C语言当中 字节大小
+/*unsigned int sz = sizeof(a);
+unsigned int su = sizeof(int);//也可以输出整形的大小，int为四个字节
+printf("%d and %d ",sz,su);//此时输出为4，也就是整型a的字节大小，它的size*/
+
+//回归前面知识; sizeof(arr)/sizeof(arr[0])前者是整个数组的大小，后者是数组中一格的大小，相当于20/4=5，所以通过算法得到了5
+/*int ai[] = { 1,2,3,4,5 };
+//unsigned int sb = sizeof(ai);
+size_t  sb = sizeof(ai);//size_t可以理解为小名，比如张三也叫小张，size_t在这里可以替代unsigned int
+printf("%d ",sb);//可以发现输出20，就是整个数组的大小*/
+
+//小例题
+/*int arr[10] = {1,2,3,4,5,6,7,8,9,10};
+printf("%d ", sizeof(arr)/sizeof(arr[0]));*/// 整个数组的字节大小/数组当中每个元素的字节大小 = 数组中元素的个数
+
+//数组知识扩展：前面学的全都是整型数组，但其实别的类型也有数组
+/*int arr[] = {1,2,3,4};
+char crr[] = {'a','b','c'};//char类型输入的是一个个单引号包括在内的自负
+double  frr[] = { 1.1,1.2,1.3 };//注意，正常的小数是double（双精度浮点数）1.2f这类特别标注的才是单精度浮点
+float frr[] = { 1.1f, 1.2f, 1.3f };  // 编译器会自动识别出数组长度为 3*/
+
+
+//  6.一维数组习题练习
+//6.1：数组的逆置，把数组当中的元素逆置输出。。这个逆置不是输出是逆置的，而是在数组内从12345变成54321
+//思路，可以看成一碗醋和一碗水，现在希望倒到另一方碗里，这时候需要第三个碗才能完成，同时定义水和醋分别为i和j，比如1 2 3 4 5 ，设i=1，j=5，引入存储专用tmp
+// 可以：1:tmp = arr[i] 2:arr[i] = arr[j] 3: arr[i]=tmp 赋值就是把后面的值给前面，比如tmp = arr[i]就是把水倒进了空碗里，2:arr[i] = arr[j]就是把醋倒进原来装水的碗里
+//那么如何逆置2和4呢？只需要i++和j--即可
+//start
+
+/*int arr[] = {1,2,3,4,5};
+int end = sizeof(arr) / sizeof(arr[0]);
+int i = 0;
+int j = end - 1;//You must minus 1
+//int j = 4;实际不能这样写，为0一定是下标开始第一位，但是换一个数组，4可就不是数组最后一位了，利用上sizeof
+while (i < j)//可以写成<=,但是没必要，i小于j就足够了
+{
+	int tmp = arr[i];
+	arr[i] = arr[j];
+	arr[j] = tmp;//到这里1和5已经更换完毕，到2和4了
+	i++;//1下标
+	j--;//3下标
+}//接下来遍历输出即可
+for (int a = 0; a < end; a++)
+{
+	printf("%d ", arr[a]);
+}*/
+
+//接下来是例题2.数组元素扩大两倍
+//给定指定数组，将原数组中每个元素扩大两倍，输出最后数组的元素
+//列如给定数组arr：1 2 3 4扩大两倍后数组变为：2 4 6 8
+//start 
+/*int arr[] = {1,2,3,4,5};
+int len = sizeof(arr) / sizeof(arr[0]);//5
+for (int i = 0; i < len; i++) {     //i<5..遍历数组是大部分数组题的基础
+	arr[i]=arr[i] * 2;//相当于arr[0] = arr[0] * 2
+}
+for (int i = 0; i < len; i++)//遍历输出
+{
+	printf("%d ",arr[i]);
+}*/
+//自己重复一遍，将数组元素扩大两倍
+/*int mac[] = {1,3,5,7,9};
+int max = sizeof(mac) / sizeof(mac[0]);//5。用sizeof是好习惯，因为你未必一直能知道数组有几个元素
+printf("原始元素： ");
+for (int a = 0; a < max; a++)
+{
+	printf("%d ",mac[a]);
+}
+printf("\n");
+for (int a = 0; a < max; a++)
+{
+	mac[a] = mac[a] * 2;
+}
+printf("扩大两倍后的数据： ");
+for (int a = 0; a < max; a++)
+{
+	printf("%d ",mac[a]);
+}//还可以，还在原基础上扩展了printf*/
+
+
+//接下来是例题3.二分查找
+//题目：给定一个升序的整型数组，在这个数组中查找到指定的值n，找到了就打印n的下标，找不到就打印“找不到”
+//提示：在一个升序的数组中查找指定的数字n，很容易想到遍历数组这个方法，但是这个方法效率比较低下
+//用arr[mid]就是数组中间的值与你要找的n的值进行比较。i为数组最左边的值，j为数组最右边的值
+// if arr[mid]<n  说明n在右边 此时i = mid + 1
+// if arr[mid]>n  说明n在左边 此时j = mid - 1
+
+int arr[] = {1,2,3,4,5};
+int len = sizeof(arr) / sizeof(arr[0]);
+int i = 0;
+//下标，i最左边，j最右边
+int j = len - 1;
+int n = 5;//设定为目标数据，找出n
+int flog = 0;//定位一个标记
+int mid = -1;//不明白，好像是为了能在printf使用mid，没有这个mid只是局部变量，无法打印
+while (i <= j)//因为要找的数据也可能同时等于ij
+{
+ mid = (i + j) / 2;
+	if (arr[mid] < n)
+	{
+		i = mid + 1;
+	}
+	else if (arr[mid] > n)
+	{
+		j = mid - 1;
+	}
+	else
+	{
+		flog = 1;
+		break;
+	}
+}
+if (flog == 1)
+{
+	printf("找到了，下标为：%d ",mid);
+}
+else
+{
+	printf("没找到");
+}
 	return 0;
 }
